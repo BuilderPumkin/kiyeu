@@ -1,0 +1,182 @@
+{
+  "_comment": "Tệp cấu hình nội dung Thiệp Mời Lễ Kỷ Yếu K28 — Ngô Quang Thành Hưng (A3K28).",
+  "meta": {
+    "pageTitle": "Thiệp Mời Lễ Kỷ Yếu K28 — Ngô Quang Thành Hưng",
+    "badge": "MEMORY DISC // CATCH THE MEMORY",
+    "subtitle": "THIỆP MỜI LỄ KỶ YẾU K28"
+  },
+  "host": {
+    "name": "Ngô Quang Thành Hưng",
+    "alias": "A3K28 // INFINITE ARCHITECT",
+    "className": "A3K28 - Senior Application AI Engineer",
+    "school": "THPT Phan Huy Chú - Đống Đa",
+    "quote": "“Chỉ cần bắt đầu từ đam mê chân thành và giữ bên mình những người bạn quý giá làm hằng số c, phép lặp z = z² + c của tuổi trẻ sẽ chạm tới vô cực.”",
+    "motto": "A3K28 · THPT Phan Huy Chú — Đống Đa · Lễ Kỷ Yếu 2026"
+  },
+  "event": {
+    "isoDate": "2026-12-27T08:30:00+07:00",
+    "displayDate": "Thứ Sáu, 27\u00A0Tháng\u00A012,\u00A02026",
+    "displayTime": "08:30 — 11:30",
+    "venueName": "Trường THPT Phan Huy Chú — Đống Đa",
+    "venueAddress": "Số 34, Ngõ 49 Huỳnh Thúc Kháng, Láng Hạ, Đống Đa, Hà Nội",
+    "coordinates": "21.0166° N · 105.8096° E",
+    "mapUrl": "https://maps.google.com/?q=Truong+THPT+Phan+Huy+Chu+Dong+Da,+34+Ngo+49+Huynh+Thuc+Khang,+Dong+Da,+Ha+Noi",
+    "calendarTitle": "Lễ Kỷ Yếu K28 — Ngô Quang Thành Hưng (A3K28)",
+    "calendarLocation": "Trường THPT Phan Huy Chú - Đống Đa, Số 34 Ngõ 49 Huỳnh Thúc Kháng, Đống Đa, Hà Nội",
+    "calendarDetails": "Thiệp mời tham dự Lễ Kỷ Yếu niên khóa K28 cùng Ngô Quang Thành Hưng (A3K28) tại Trường THPT Phan Huy Chú - Đống Đa."
+  },
+  "tablet": {
+    "engravedHeader": "STAND: 「CATCH THE MEMORY」",
+    "sealFormula": "zₙ₊₁ = zₙ² + c",
+    "headline": "LỄ KỶ YẾU NIÊN KHÓA K28",
+    "subheadline": "Trong phép lặp z = z² + c của tuổi trẻ, sự hiện diện của bạn chính là hằng số c đặc biệt nhất mở ra miền ký ức vô hạn.",
+    "primaryCta": "Mở thiệp mời",
+    "secondaryCta": "Xem lại Mở đầu",
+    "scrollHint": "Kéo xuống"
+  },
+  "story": {
+    "eyebrow": "KHỞI NGUYÊN VÔ HẠN · z = z² + c",
+    "heading": "Từ một phép lặp giản đơn mở ra cả vũ trụ thanh xuân vô tận",
+    "paragraphs": [
+      "Trong toán học phân dạng, phương trình z = z² + c khởi đầu từ điểm 0 giản dị, nhưng qua từng phép lặp bền bỉ lại bung nở thành miền hình học mang chiều sâu bất tận — nơi càng phóng đại vào thực tại, ta càng bắt gặp những dải ngân hà mới rực rỡ hơn. Ba năm gắn bó của A3K28 dưới mái trường THPT Phan Huy Chú – Đống Đa cũng được dệt nên như thế: từ những buổi sáng đầu tiên còn bỡ ngỡ, từng tiết học, từng dòng code, từng tiếng cười nơi sân trường đã bình phương nối tiếp nhau thành một miền thanh xuân không thể thay thế.",
+      "Trước khoảnh khắc khép lại chu kỳ K28 để mỗi chúng ta bước sang chân trời mới, mình muốn gửi tới bạn lời chúc đặc biệt nhất: chúc cho hằng số c của riêng bạn luôn giữ trọn bản lĩnh và nhiệt huyết ban đầu, để dù mai này đi qua bao biến số của cuộc sống, mọi phép lặp của bạn đều hội tụ về hạnh phúc, tự do và chạm tới vô hạn khả năng ở thực tại. Sự hiện diện của bạn tại sân trường Phan Huy Chú sẽ là mảnh ghép đẹp nhất lưu vào chiếc DISC ký ức của mình!"
+    ],
+    "equations": [
+      {
+        "formula": "zₙ₊₁ = zₙ² + c"
+      },
+      {
+        "formula": "z₀ = 0  ·  c ∈ A3K28"
+      },
+      {
+        "formula": "lim(n → ∞) |Ký Ức(zₙ)| = ∞"
+      }
+    ]
+  },
+  "standProfile": {
+    "eyebrow": "HỒ SƠ STAND · A3K28",
+    "standName": "CATCH THE MEMORY",
+    "standMaster": "Ngô Quang Thành Hưng",
+    "standType": "Chạm đến vô hạn khả năng ở thực tại, gia tốc không thời gian và lưu trữ disk ký ức",
+    "abilitySummary": "",
+    "stats": [
+      {
+        "label": "Gia tốc Deadline",
+        "shortLabel": "Gia tốc Deadline",
+        "rank": "S",
+        "value": 97,
+        "note": "Hoàn thành đồ án ngay sát đường chân trời sự kiện."
+      },
+      {
+        "label": "Sức bền Thức đêm",
+        "shortLabel": "Sức bền",
+        "rank": "A",
+        "value": 88,
+        "note": "Duy trì tỉnh táo qua chuỗi tích phân và mô phỏng số."
+      },
+      {
+        "label": "Vật lí Minecraft",
+        "shortLabel": "Vật lí Minecraft",
+        "rank": "S",
+        "value": 98,
+        "note": "Tư duy vật lí đỉnh cao đến mức quên quy tắc đơn giản nhất"
+      },
+      {
+        "label": "Phạm vi Ảnh hưởng",
+        "shortLabel": "Phạm vi",
+        "rank": "B",
+        "value": 74,
+        "note": "Lan tỏa từ giảng đường tới từng quán trà đá cổng trường."
+      },
+      {
+        "label": "AI user BIQ",
+        "shortLabel": "AI user BIQ",
+        "rank": "A",
+        "value": 91,
+        "note": "khả năng nhanh và chính xác thừa hưởng từ gehihi, thầy claude và anh Char Ge Pi Tea tạo lên tư duy hallucation thuần túy cụ thể là sai dấu phép tính"
+      },
+      {
+        "label": "Tiềm năng Phát triển",
+        "shortLabel": "Tiềm năng",
+        "rank": "∞",
+        "value": 99,
+        "note": "Mở ra vô hạn quỹ đạo mới sau ngày tốt nghiệp."
+      }
+    ]
+  },
+  "schedule": {
+    "eyebrow": "LỊCH TRÌNH & TỌA ĐỘ K28",
+    "heading": "Dòng thời gian ngày Kỷ Yếu & Trang phục",
+    "items": [
+      {
+        "time": "08:30",
+        "title": "Hội tụ tại Sân trường Phan Huy Chú",
+        "desc": "Đón bạn bè, thầy cô và người thân tại khuôn viên THPT Phan Huy Chú – Đống Đa, khởi tạo hằng số đầu tiên cho ngày hội ngộ."
+      },
+      {
+        "time": "09:15",
+        "title": "Khung hình Tập thể A3K28 & Tri ân",
+        "desc": "Ghi lại bức ảnh chung toàn lớp A3K28 cùng thầy cô dưới mái trường ba năm thanh xuân gắn bó."
+      },
+      {
+        "time": "10:00",
+        "title": "Góc chụp Cá nhân & Lưu trữ DISC Ký Ức",
+        "desc": "Giao lưu, chụp ảnh riêng cùng Thành Hưng — tự do bung trọn các pha JoJo Pose và khoảnh khắc đáng nhớ nhất."
+      },
+      {
+        "time": "11:00",
+        "title": "Khép lại Chu kỳ K28 & Lời chúc Mở lối",
+        "desc": "Trao nhau lời chúc chân thành trước ngưỡng cửa mới và đóng gói trọn vẹn bộ nhớ thanh xuân."
+      }
+    ]
+  },
+  "dressCode": {
+    "summary": "Ưu tiên trang phục lịch sự theo dải màu Đen Thiên Hà hoặc Trắng Thanh Lịch để tổng thể hài hòa và nổi bật trong khung hình tại sân trường Phan Huy Chú.",
+    "swatches": [
+      {
+        "name": "Đen Thiên Hà",
+        "hex": "#1B1B27",
+        "role": "Chủ đạo"
+      },
+      {
+        "name": "Trắng Tinh Vân",
+        "hex": "#EAE6DC",
+        "role": "Lịch sự"
+      },
+      {
+        "name": "Vàng Tỷ Lệ",
+        "hex": "#E8C56E",
+        "role": "Điểm nhấn"
+      },
+      {
+        "name": "Tím Stone Ocean",
+        "hex": "#9D7FEA",
+        "role": "Phá cách"
+      }
+    ]
+  },
+  "rsvp": {
+    "eyebrow": "XÁC NHẬN THAM DỰ",
+    "heading": "Ghi dấu sự hiện diện của bạn",
+    "note": "Hãy xác nhận trước ngày 22/12/2026 để mình chuẩn bị chu đáo lời đón tiếp và dành riêng thời gian chụp ảnh cùng bạn tại THPT Phan Huy Chú – Đống Đa nhé.",
+    "webhookUrl": ""
+  },
+  "poseGuide": {
+    "heading": "Gợi ý JoJo Pose & DISC Ký Ức",
+    "note": "Một vài góc pose kỷ niệm tại sân trường Phan Huy Chú – Đống Đa (hoặc gửi pose riêng của bạn ở khung bên cạnh):",
+    "items": [
+      {
+        "title": "01 // Stone Free String Frame",
+        "desc": "Giơ tay tạo khung hình chữ nhật / vòng xoắn sợi chỉ trước ống kính cùng tấm biển A3K28."
+      },
+      {
+        "title": "02 // Ultimate Kars Silhouette",
+        "desc": "Góc máy thấp ngước nhẹ dưới nắng sân trường với dáng đứng khoanh tay kiêu hãnh."
+      },
+      {
+        "title": "03 // Catch The Memory DISC",
+        "desc": "Trao tay chiếc DISC kỷ niệm cùng cả nhóm A3K28 trước bảng tên THPT Phan Huy Chú."
+      }
+    ]
+  }
+}

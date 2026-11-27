@@ -1,0 +1,61 @@
+{
+  "_comment": "Cấu hình timeline điện ảnh 3D (57.5s): Thiên hà xoắn ốc 6 hành tinh mượt liên tục -> Sóng xung kích & Sao băng -> Mặt Trăng nổ 3D -> Chuyển cảnh vào hố Mặt Trăng -> 5 góc máy Kars & Phiến đá Cổ -> Nứt vỡ tách đôi -> Supernova -> Thiệp mời Catch The Memory.",
+  "totalDuration": 57.5,
+  "tabletReleaseTimeInClip": 3.67,
+  "modelPath": "./models/kars_animated.glb",
+  "colors": {
+    "cosmosBg": "#07070D",
+    "gold": "#E8C56E",
+    "amethyst": "#9D7FEA",
+    "cherenkov": "#5CE1E6",
+    "starCore": "#FFF8E7",
+    "dustTint": "#7E7C8D"
+  },
+  "moon": {
+    "position": [13.5, 0.4, -4.8],
+    "radius": 1.85,
+    "customGlbUrl": null
+  },
+  "camera": {
+    "fovBase": 50,
+    "fovStreak": 64,
+    "handheldAmpPos": 0.04,
+    "handheldAmpRot": 0.009,
+    "handheldFreq": 1.25
+  },
+  "beats": {
+    "calmGalaxyEnd": 5.0,
+    "accelPhaseEnd": 14.0,
+    "spinCollapseEnd": 19.2,
+    "shockwave": 19.3,
+    "meteorFlybyStart": 19.35,
+    "whipPanStart": 21.1,
+    "whipPanEnd": 22.9,
+    "crashZoomInStart": 23.1,
+    "crashZoomInEnd": 23.95,
+    "crashZoomOutEnd": 25.3,
+    "meteorLockStart": 25.5,
+    "meteorLockEnd": 27.9,
+    "moonSpaceImpact": 29.2,
+    "fadeOutDone": 30.65,
+    "fadeInDone": 32.0,
+    "lunarMeteorImpact": 33.2,
+    "overheadStart": 33.85,
+    "animeZoomTablet": 37.0,
+    "lunarGroundShot": 38.5,
+    "karsBootStomp": 39.45,
+    "karsHeroZoomOut": 40.25,
+    "karsBehindCut": 42.3,
+    "karsKneelStart": 43.5,
+    "tabletGrab": 44.35,
+    "karsGazeStart": 45.2,
+    "karsWindupStart": 47.6,
+    "tabletThrow": 48.45,
+    "timeFreezeComplete": 51.3,
+    "tabletCloseupLocked": 51.45,
+    "crackStart": 51.6,
+    "splitStart": 53.1,
+    "supernovaStart": 55.4,
+    "tabletReveal": 56.25
+  }
+}

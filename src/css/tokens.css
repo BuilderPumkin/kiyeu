@@ -1,0 +1,108 @@
+/* =========================================================
+   DESIGN TOKENS — Dark Mode Cosmos & Stone Ocean Palette
+   Compliant with GEMINI.md (BASE-07, BASE-08, BASE-11, BASE-12, UI-11)
+   ========================================================= */
+:root {
+  /* Elevation Surfaces (dp0 -> dp3; zero pure #000000) */
+  --bg-cosmos: #0A0A12;
+  --surface-dp0: #121218;
+  --surface-dp1: #181822;
+  --surface-dp2: #1F1E2C;
+  --surface-dp3: #272638;
+  --surface-tablet: rgba(20, 20, 30, 0.90);
+  --surface-scrim: rgba(12, 12, 18, 0.84);
+
+  /* Text Inks (zero pure #FFFFFF; high contrast on #121218 / #1F1E2C) */
+  --ink-primary: #ECECEC;
+  --ink-secondary: #B8BCD0;
+  --ink-muted: #9398B0;
+  --ink-on-accent: #14131B;
+
+  /* Calibrated Accents (desaturated 15% for dark mode comfort) */
+  --accent-gold: #E8C56E;
+  --accent-gold-strong: #F2D488;
+  --accent-gold-dim: rgba(232, 197, 110, 0.24);
+  --accent-amethyst: #9D7FEA;
+  --accent-amethyst-dim: rgba(157, 127, 234, 0.22);
+  --accent-cyan: #5CE1E6;
+  --accent-cyan-dim: rgba(92, 225, 230, 0.18);
+
+  /* Semantic Borders & Interactive States */
+  --border-variant: rgba(232, 197, 110, 0.20);
+  --border-subtle: rgba(184, 188, 208, 0.16);
+  --border-strong: rgba(232, 197, 110, 0.56);
+  --color-focus: #F2D488;
+  --color-error: #F28B82;
+  --color-error-bg: rgba(242, 139, 130, 0.14);
+  --color-success: #7CE8B5;
+  --color-success-bg: rgba(124, 232, 181, 0.14);
+
+  /* Stone Free Möbius Thread VFX Tokens */
+  --bg-mobius: #04060E;
+  --thread-ink: #04102E;
+  --thread-sapphire: #082366;
+  --thread-cobalt: #1158C9;
+  --thread-cyan: #24B8FF;
+  --thread-ice: #BDF6FF;
+  --thread-glow: rgba(36, 184, 255, 0.22);
+  --shadow-card: 0 18px 44px rgba(4, 4, 10, 0.45), inset 0 1px 0 rgba(232, 197, 110, 0.18);
+
+  /* Cinematic Overlays & Anime G-Pen FX Tokens */
+  --fade-curtain: #06060A;
+  --ink-manga-stroke: #09080E;
+  --ink-manga-rim: rgba(236, 236, 236, 0.42);
+  --flash-core: #FFFDF7;
+  --flash-gold: #F5D782;
+
+  /* Typography Families (Vietnamese Unicode Full Support) */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Type Scale (ratio 1.250, readable at 320px .. 1440px) */
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-base: 1rem;
+  --text-lg: clamp(1.125rem, 1.05rem + 0.35vw, 1.25rem);
+  --text-xl: clamp(1.45rem, 1.2rem + 1vw, 2.05rem);
+  --text-hero: clamp(1.75rem, 1.3rem + 2vw, 3.05rem);
+
+  /* 8dp Spacing Scale */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-10: 80px;
+
+  /* Geometry & Motion */
+  --chamfer-sm: polygon(10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px);
+  --chamfer-md: polygon(16px 0, calc(100% - 16px) 0, 100% 16px, 100% calc(100% - 16px), calc(100% - 16px) 100%, 16px 100%, 0 calc(100% - 16px), 0 16px);
+  --chamfer-lg: polygon(22px 0, calc(100% - 22px) 0, 100% 22px, 100% calc(100% - 22px), calc(100% - 22px) 100%, 22px 100%, 0 calc(100% - 22px), 0 22px);
+  --ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
+  --duration-fast: 180ms;
+  --duration-med: 420ms;
+  --duration-slow: 900ms;
+
+  --container-max: 1040px;
+  --grid-gutter: 24px;
+  --shadow-tablet: 0 28px 80px rgba(4, 4, 10, 0.72), 0 0 48px rgba(157, 127, 234, 0.16);
+}
+
+/* JoJo Palette Shift Theme Override (triggered intentionally by user button) */
+[data-theme="jojo-shift"] {
+  --surface-dp0: #161024;
+  --surface-dp1: #1E1533;
+  --surface-dp2: #281C42;
+  --surface-dp3: #332454;
+  --accent-gold: #7FE3E8;
+  --accent-gold-strong: #9FF0F4;
+  --accent-gold-dim: rgba(127, 227, 232, 0.24);
+  --accent-amethyst: #F08CA8;
+  --accent-amethyst-dim: rgba(240, 140, 168, 0.24);
+  --border-variant: rgba(127, 227, 232, 0.28);
+  --border-strong: rgba(127, 227, 232, 0.65);
+  --color-focus: #9FF0F4;
+}
