@@ -102,6 +102,9 @@ export class IntroDirector {
     this.disposed = false;
     this.isFrozenFinale = false;
     this.isRenderPaused = false;
+    this.lowPerfMode = false;
+    this._fpsFrames = 0;
+    this._fpsStartMs = 0;
     this.isAmbientStandby = false;
     this.ambientThetaOffset = 0;
     this.timeline = null;
@@ -177,7 +180,8 @@ export class IntroDirector {
     this.renderer = renderer;
     const w = window.innerWidth;
     const h = window.innerHeight;
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    const maxDpr = w <= 768 ? 1.5 : 2;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, maxDpr));
     renderer.setSize(w, h, false);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.05;
@@ -905,15 +909,47 @@ export class IntroDirector {
     }, 120);
   }
 
+  enableLowPerfMode() {
+    if (this.lowPerfMode || !this.renderer) return;
+    this.lowPerfMode = true;
+    this.renderer.setPixelRatio(1);
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    this.renderer.setSize(w, h, false);
+    this.composer?.setSize(w, h);
+    if (this.bloomPass) this.bloomPass.enabled = false;
+    if (this.renderer.shadowMap) this.renderer.shadowMap.autoUpdate = false;
+  }
+
   _startRenderLoop() {
     if (this.rafId) cancelAnimationFrame(this.rafId);
     this.clock.start();
+    this._fpsFrames = 0;
+    this._fpsStartMs = performance.now();
 
     const tick = () => {
       if (this.disposed) return;
       this.rafId = requestAnimationFrame(tick);
 
-      if (this.isRenderPaused) return;
+      if (this.isRenderPaused) {
+        this._fpsFrames = 0;
+        this._fpsStartMs = performance.now();
+        return;
+      }
+
+      if (!this.lowPerfMode && !this.isAmbientStandby && !document.hidden) {
+        this._fpsFrames++;
+        const nowMs = performance.now();
+        const span = nowMs - this._fpsStartMs;
+        if (span >= 1500) {
+          const avgFps = (this._fpsFrames * 1000) / span;
+          if (avgFps < 24 && !this._explicitSeekTime) {
+            this.enableLowPerfMode();
+          }
+          this._fpsFrames = 0;
+          this._fpsStartMs = nowMs;
+        }
+      }
 
       const rawDt = Math.min(this.clock.getDelta(), 0.05);
       this.elapsedGlobal += rawDt;
@@ -1307,8 +1343,9 @@ export class IntroDirector {
       this.renderer.setSize(w, h, false);
       this.composer?.setSize(w, h);
       this.bloomPass?.resolution.set(w, h);
-      this.deepStars.uniforms.uPixelRatio.value = Math.min(window.devicePixelRatio || 1, 2);
-      this.vortex.uniforms.uPixelRatio.value = Math.min(window.devicePixelRatio || 1, 2);
+      const effDpr = this.lowPerfMode ? 1 : Math.min(window.devicePixelRatio || 1, w <= 768 ? 1.5 : 2);
+      this.deepStars.uniforms.uPixelRatio.value = effDpr;
+      this.vortex.uniforms.uPixelRatio.value = effDpr;
     };
     window.addEventListener('resize', this._onResize);
   }

@@ -10,12 +10,14 @@
   <meta property="og:url" content="https://builderpumkin.github.io/kiyeu/" />
   <meta property="og:title" content="Thiệp Mời Lễ Kỷ Yếu K28 — Ngô Quang Thành Hưng" />
   <meta property="og:description" content="Thiệp mời lễ kỷ yếu niên khóa K28 — Ngô Quang Thành Hưng (A3K28), Trường THPT Phan Huy Chú - Đống Đa." />
-  <meta property="og:image" content="https://builderpumkin.github.io/kiyeu/images/mandelbrot-z2-c.png" />
+  <meta property="og:image" content="https://builderpumkin.github.io/kiyeu/images/og-cover.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="vi_VN" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Thiệp Mời Lễ Kỷ Yếu K28 — Ngô Quang Thành Hưng" />
   <meta name="twitter:description" content="Thiệp mời lễ kỷ yếu niên khóa K28 — Ngô Quang Thành Hưng (A3K28), Trường THPT Phan Huy Chú - Đống Đa." />
-  <meta name="twitter:image" content="https://builderpumkin.github.io/kiyeu/images/mandelbrot-z2-c.png" />
+  <meta name="twitter:image" content="https://builderpumkin.github.io/kiyeu/images/og-cover.png" />
   <link
     rel="icon"
     type="image/svg+xml"
@@ -98,6 +100,9 @@
           <span>Chạm để bắt đầu mở đầu</span>
           <span aria-hidden="true">→</span>
         </button>
+        <button type="button" id="btn-direct-invitation" class="btn btn--ghost cosmic-start-gate__direct" hidden>
+          <span>Vào thẳng thông tin thiệp &amp; bản đồ</span>
+        </button>
       </div>
     </div>
 
@@ -169,7 +174,7 @@
             <dl class="tablet-coords">
               <div class="tablet-coords__item">
                 <dt>Thời gian</dt>
-                <dd data-bind="event.displayDate">Thứ Sáu, 27 Tháng 12, 2026</dd>
+                <dd data-bind="event.displayDate">Chủ Nhật, 27 Tháng 12, 2026</dd>
                 <dd class="tablet-coords__sub" data-bind="event.displayTime">08:30 — 11:30</dd>
               </div>
               <div class="tablet-coords__item">
@@ -264,15 +269,18 @@
         <aside class="col-span-5 story-diagram-wrap" aria-label="Hình ảnh tập phân dạng Mandelbrot z = z² + c">
           <div class="chamfer-card diagram-card">
             <figure class="mandelbrot-figure">
-              <img
-                src="./images/mandelbrot-z2-c.png"
-                alt="Hình ảnh tập phân dạng Mandelbrot của phương trình z = z² + c"
-                class="mandelbrot-img"
-                width="1200"
-                height="760"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="./images/mandelbrot-z2-c.webp" type="image/webp" />
+                <img
+                  src="./images/mandelbrot-z2-c.png"
+                  alt="Hình ảnh tập phân dạng Mandelbrot của phương trình z = z² + c"
+                  class="mandelbrot-img"
+                  width="1200"
+                  height="760"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
             </figure>
             <ul id="equations-list" class="equations-list" translate="no"></ul>
           </div>
@@ -380,7 +388,11 @@
                 >
                   Lưu vào Lịch
                 </a>
+                <button type="button" id="btn-copy-link" class="btn btn--ghost">
+                  <span>Sao chép link mời</span>
+                </button>
               </div>
+              <p id="copy-link-feedback" class="coords-copy-feedback" role="status" aria-live="polite" hidden></p>
             </div>
 
             <div class="chamfer-card dress-card">

@@ -759,7 +759,8 @@ export function createMobiusThreadStage({ canvas, onFormed, onPhaseEvent }) {
     };
   }
 
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const maxDpr = window.innerWidth <= 768 ? 1.5 : 2;
+  const dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
   renderer.setPixelRatio(dpr);
 
   const scene = new THREE.Scene();
@@ -1708,6 +1709,7 @@ export function createMobiusThreadStage({ canvas, onFormed, onPhaseEvent }) {
     start,
     stop,
     setPaused,
+    isPaused: () => paused,
     setPaletteTheme,
     simulateOrbit,
     seekToPhase,

@@ -4,12 +4,29 @@ import { createMobiusThreadStage } from './mobiusThreadStage.js';
 import { createSoundEngine } from './soundEngine.js';
 import { hydrateInvitation } from './uiRenderer.js';
 
+const INTRO_SEEN_KEY = 'k28_intro_seen_v1';
+
+function markIntroSeen() {
+  try {
+    localStorage.setItem(INTRO_SEEN_KEY, '1');
+  } catch {}
+}
+
+function hasSeenIntro() {
+  try {
+    return localStorage.getItem(INTRO_SEEN_KEY) === '1';
+  } catch {
+    return false;
+  }
+}
+
 async function bootstrap() {
   const loaderEl = document.getElementById('intro-loader');
   const loaderFillEl = document.getElementById('intro-loader-fill');
   const introStageEl = document.getElementById('intro-stage');
   const startGateEl = document.getElementById('cosmic-start-gate');
   const startBtn = document.getElementById('btn-start-journey');
+  const directBtn = document.getElementById('btn-direct-invitation');
 
   const tabletSection = document.getElementById('stone-tablet-section');
   const tabletCard = document.getElementById('stone-tablet-card');
@@ -38,6 +55,7 @@ async function bootstrap() {
   let choreographyData;
 
   const unlockScrollAndSections = () => {
+    markIntroSeen();
     scrollCueWrap?.classList.add('is-visible');
     scrollCueWrap?.setAttribute('aria-hidden', 'false');
     if (mainEl) mainEl.hidden = false;
@@ -79,6 +97,7 @@ async function bootstrap() {
   hydrateInvitation(invitationData);
 
   const revealStoneTablet = () => {
+    markIntroSeen();
     transitionCtx?.revert();
     transitionCtx = null;
     if (startGateEl) startGateEl.hidden = true;
@@ -116,14 +135,91 @@ async function bootstrap() {
   window.__introDirector = director;
   loaderEl?.classList.add('is-hidden');
 
-  if (startGateEl) {
+  const openInvitationDirectly = (animate = true) => {
+    markIntroSeen();
+    transitionCtx?.revert();
+    transitionCtx = null;
+    mobiusController.stop();
+    if (mobiusStageEl) {
+      mobiusStageEl.hidden = true;
+      mobiusStageEl.classList.remove('is-transitioning');
+    }
+    director.timeline?.pause();
+    director.setPaused(true);
+
+    const finalizeDirectOpen = () => {
+      if (startGateEl) startGateEl.hidden = true;
+      if (introStageEl) introStageEl.hidden = true;
+      tabletSection?.classList.remove('is-visible', 'is-opening-threads');
+      tabletSection?.setAttribute('aria-hidden', 'true');
+      unlockScrollAndSections();
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    };
+
+    if (!animate || !introStageEl) {
+      finalizeDirectOpen();
+      return;
+    }
+
+    transitionCtx = gsap.context(() => {
+      gsap.to(introStageEl, {
+        opacity: 0,
+        duration: 0.4,
+        ease: 'power2.inOut',
+        onComplete: () => {
+          introStageEl.style.opacity = '';
+          finalizeDirectOpen();
+        },
+      });
+    }, document.body);
+  };
+
+  const isDirectQuery = new URLSearchParams(window.location.search).get('direct') === '1';
+  if (isDirectQuery) {
+    openInvitationDirectly(false);
+  } else if (startGateEl) {
     startGateEl.hidden = false;
+    if (directBtn && hasSeenIntro()) {
+      directBtn.hidden = false;
+    }
     gsap.fromTo(
       startGateEl,
       { opacity: 0, y: 18 },
       { opacity: 1, y: 0, duration: 0.75, ease: 'power2.out', clearProps: 'transform,opacity' }
     );
   }
+
+  directBtn?.addEventListener('click', () => {
+    soundEngine.unlock();
+    openInvitationDirectly(true);
+  });
+
+  // Auto-pause background WebGL loops when tab is hidden to save battery
+  let hiddenPausedDirector = false;
+  let hiddenPausedMobius = false;
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      if (introStageEl && !introStageEl.hidden && !director.isRenderPaused) {
+        director.setPaused(true);
+        hiddenPausedDirector = true;
+      }
+      if (mobiusStageEl && !mobiusStageEl.hidden && !mobiusController.isPaused?.()) {
+        mobiusController.setPaused(true);
+        hiddenPausedMobius = true;
+      }
+    } else {
+      if (hiddenPausedDirector) {
+        if (introStageEl && !introStageEl.hidden) director.setPaused(false);
+        hiddenPausedDirector = false;
+      }
+      if (hiddenPausedMobius) {
+        if (mobiusStageEl && !mobiusStageEl.hidden && !mobiusPaused) {
+          mobiusController.setPaused(false);
+        }
+        hiddenPausedMobius = false;
+      }
+    }
+  });
 
   let introLaunched = false;
   const launchIntroFromGate = () => {

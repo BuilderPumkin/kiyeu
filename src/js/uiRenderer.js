@@ -127,6 +127,7 @@ export function hydrateInvitation(data) {
   startCountdown(data.event?.isoDate);
   setupScrollAnimations();
   setupTabletTilt();
+  setupShareLinkButton();
   setupRsvpForm(data.rsvp);
 }
 
@@ -368,7 +369,77 @@ function setupTabletTilt() {
 }
 
 /**
- * Accessible RSVP Form + LocalStorage Guestbook + Spin Particle Celebration (< 1.3s)
+ * Quick Share Invite Link Button with clipboard + fallback
+ */
+function setupShareLinkButton() {
+  const copyBtn = document.getElementById('btn-copy-link');
+  const feedbackEl = document.getElementById('copy-link-feedback');
+  if (!copyBtn) return;
+
+  let timerId = null;
+  copyBtn.addEventListener('click', async () => {
+    const shareUrl = window.location.href.split('#')[0].split('?')[0];
+    let copied = false;
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(shareUrl);
+        copied = true;
+      }
+    } catch {}
+
+    if (!copied) {
+      const ta = document.createElement('textarea');
+      ta.value = shareUrl;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        copied = document.execCommand('copy');
+      } catch {}
+      document.body.removeChild(ta);
+    }
+
+    if (feedbackEl) {
+      feedbackEl.textContent = copied
+        ? 'Đã sao chép link thiệp mời vào bộ nhớ tạm!'
+        : `Link thiệp: ${shareUrl}`;
+      feedbackEl.hidden = false;
+      if (timerId) window.clearTimeout(timerId);
+      timerId = window.setTimeout(() => {
+        feedbackEl.hidden = true;
+      }, 2800);
+    }
+  });
+}
+
+/**
+ * Merge & deduplicate guestbook entries by (name + timestamp) keeping newest first
+ */
+function mergeGuestbookEntries(remoteEntries, localEntries) {
+  const seen = new Set();
+  const merged = [];
+  const all = [...(Array.isArray(remoteEntries) ? remoteEntries : []), ...(Array.isArray(localEntries) ? localEntries : [])];
+  for (const item of all) {
+    if (!item || !item.name) continue;
+    const key = `${String(item.name).trim().toLowerCase()}|${item.timestamp || ''}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    merged.push({
+      name: String(item.name).trim(),
+      attending: item.attending || 'yes',
+      guests: Number(item.guests) || 1,
+      wish: item.wish ? String(item.wish).trim() : '',
+      timestamp: item.timestamp || '',
+    });
+  }
+  merged.sort((a, b) => String(b.timestamp).localeCompare(String(a.timestamp)));
+  return merged.slice(0, 50);
+}
+
+/**
+ * Accessible RSVP Form + Shared Remote Sync (when webhookUrl set) + LocalStorage Guestbook + Spin Burst
  */
 function setupRsvpForm(rsvpConfig) {
   const form = document.getElementById('rsvp-form');
@@ -378,6 +449,29 @@ function setupRsvpForm(rsvpConfig) {
   const submitBtn = document.getElementById('rsvp-submit-btn');
 
   renderGuestbook();
+
+  // Pull shared guestbook entries if a Google Apps Script / JSON endpoint is configured
+  if (rsvpConfig?.webhookUrl) {
+    const ac = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    const tid = ac ? window.setTimeout(() => ac.abort(), 6000) : null;
+    fetch(rsvpConfig.webhookUrl, {
+      method: 'GET',
+      signal: ac?.signal,
+    })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((payload) => {
+        const list = Array.isArray(payload) ? payload : payload?.entries;
+        if (!Array.isArray(list)) return;
+        const merged = mergeGuestbookEntries(list, loadGuestbook());
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+        renderGuestbook();
+      })
+      .catch(() => {})
+      .finally(() => {
+        if (tid) window.clearTimeout(tid);
+      });
+  }
+
   if (!form || !nameInput) return;
 
   const clearError = () => {
@@ -423,9 +517,10 @@ function setupRsvpForm(rsvpConfig) {
 
     try {
       if (rsvpConfig?.webhookUrl) {
+        // Use text/plain to stay CORS-simple for Google Apps Script Web Apps
         await fetch(rsvpConfig.webhookUrl, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
           body: JSON.stringify(entry),
         });
       }
@@ -433,9 +528,8 @@ function setupRsvpForm(rsvpConfig) {
       console.warn('RSVP webhook failed, saved locally instead:', err);
     }
 
-    const existing = loadGuestbook();
-    existing.unshift(entry);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(existing.slice(0, 30)));
+    const merged = mergeGuestbookEntries([entry], loadGuestbook());
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
     renderGuestbook();
 
     submitBtn.disabled = false;

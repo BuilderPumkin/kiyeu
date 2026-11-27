@@ -242,6 +242,16 @@ body.is-theme-pulsing .mobius-stage {
   margin-top: 4px;
 }
 
+.cosmic-start-gate__direct {
+  min-height: 44px;
+  font-size: var(--text-xs);
+  color: var(--ink-secondary);
+}
+
+.cosmic-start-gate__direct[hidden] {
+  display: none;
+}
+
 /* =========================================================
    3D COSMIC INTRO STAGE & HUD
    ========================================================= */
@@ -1286,6 +1296,13 @@ body.is-theme-pulsing .mobius-stage {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+}
+
+.coords-copy-feedback {
+  margin: 12px 0 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-success);
 }
 
 .dress-summary {
